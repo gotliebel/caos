@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+INPUT_FILENAME=$1
+declare -A matrix
+index_line=0
+index_column=0
+for line in `cat $INPUT_FILENAME`
+do
+	index_column=0
+	IFS=,
+	for symbol in $line
+	do
+		matrix["$index_line,$index_column"]=$symbol
+		index_column=$(($index_column+1))
+	done
+	index_line=$(($index_line+1))
+done
+n=$index_line
+for (( i=0; i<$(($n-1)); i++ ))
+do
+	for (( j=$(($i+1)); j<$n; j++ ))
+	do
+		multi=`echo "(${matrix["$j,$i"]})/(${matrix["$i,$i"]})" | bc -l`
+		for (( k=0; k<$(($n+1)); k++ ))
+		do
+			matrix["$j,$k"]=`echo "(${matrix["$j,$k"]})-(($multi)*(${matrix["$i,$k"]}))" | bc -l`
+		done
+	done
+done
+answer=()
+for (( i=0; i<$n; i++ ))
+do
+	answer[i]=0
+done
+for (( i=$(($n-1)); i>=0; i-- ))
+do
+	var=${matrix["$i,$n"]}
+	for (( j=$(($n-1)); j>$i; j-- ))
+	do
+		var=`echo "($var)-((${matrix["$i,$j"]})*(${answer[$j]}))" | bc -l`
+	done
+	answer[i]=`echo "($var)/(${matrix["$i,$i"]})" | bc -l`
+done
+for (( i=0; i<$n; i++ ))
+do
+	echo ${answer[i]}
+done	

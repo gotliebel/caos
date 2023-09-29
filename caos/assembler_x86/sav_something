@@ -1,0 +1,15 @@
+//mov rax, rbx
+        //vcvtsi2ss xmm2, xmm2, r10
+        //vcvtsi2ss xmm1, xmm1, rbx
+        //vdivss xmm3, xmm1, xmm2
+        //mov r12, 11
+        //vcvtsi2ss xmm4, xmm4, r12
+        //comiss xmm3, xmm4
+        //jz Chet
+        //movaps xmm0, xmm3
+        //ret
+        //Chet:
+        //      mov r13, 100
+        //      vcvtsi2ss xmm5, xmm5, r13
+        //      movaps xmm0, xmm5
+

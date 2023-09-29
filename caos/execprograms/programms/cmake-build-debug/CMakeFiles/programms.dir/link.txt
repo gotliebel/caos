@@ -1,0 +1,1 @@
+/usr/bin/clang-14 -g CMakeFiles/programms.dir/fourth.c.o -o programms 

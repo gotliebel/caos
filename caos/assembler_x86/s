@@ -1,0 +1,312 @@
+	.text
+	.intel_syntax noprefix
+	.file	"something.c"
+	.globl	main                    # -- Begin function main
+	.p2align	4, 0x90
+	.type	main,@function
+main:                                   # @main
+	.cfi_startproc
+# %bb.0:
+	push	rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset rbp, -16
+	mov	rbp, rsp
+	.cfi_def_cfa_register rbp
+	sub	rsp, 128
+	mov	dword ptr [rbp - 4], 0
+	mov	dword ptr [rbp - 8], 0
+	mov	edi, offset .L.str
+	xor	eax, eax
+                                        # kill: def $al killed $al killed $eax
+	lea	rsi, [rbp - 8]
+	call	__isoc99_scanf
+	mov	ecx, dword ptr [rbp - 8]
+	mov	edx, ecx
+	mov	ecx, edx
+	add	ecx, 1
+	mov	esi, ecx
+	mov	rdi, rsp
+	mov	qword ptr [rbp - 16], rdi
+	mov	rdi, rdx
+	imul	rdi, rsi
+	lea	rdi, [8*rdi + 15]
+	and	rdi, -16
+	mov	r8, rsp
+	sub	r8, rdi
+	mov	rsp, r8
+	mov	qword ptr [rbp - 24], rdx
+	mov	qword ptr [rbp - 32], rsi
+	mov	dword ptr [rbp - 36], 0
+	mov	qword ptr [rbp - 104], rsi # 8-byte Spill
+	mov	qword ptr [rbp - 112], r8 # 8-byte Spill
+.LBB0_1:                                # =>This Loop Header: Depth=1
+                                        #     Child Loop BB0_3 Depth 2
+	mov	eax, dword ptr [rbp - 36]
+	cmp	eax, dword ptr [rbp - 8]
+	jge	.LBB0_8
+# %bb.2:                                #   in Loop: Header=BB0_1 Depth=1
+	mov	dword ptr [rbp - 40], 0
+.LBB0_3:                                #   Parent Loop BB0_1 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	mov	eax, dword ptr [rbp - 40]
+	mov	ecx, dword ptr [rbp - 8]
+	add	ecx, 1
+	cmp	eax, ecx
+	jge	.LBB0_6
+# %bb.4:                                #   in Loop: Header=BB0_3 Depth=2
+	movsxd	rax, dword ptr [rbp - 36]
+	mov	rcx, qword ptr [rbp - 104] # 8-byte Reload
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 40]
+	shl	rax, 3
+	add	rdx, rax
+	movabs	rdi, offset .L.str.1
+	mov	rsi, rdx
+	mov	al, 0
+	call	__isoc99_scanf
+# %bb.5:                                #   in Loop: Header=BB0_3 Depth=2
+	mov	eax, dword ptr [rbp - 40]
+	add	eax, 1
+	mov	dword ptr [rbp - 40], eax
+	jmp	.LBB0_3
+.LBB0_6:                                #   in Loop: Header=BB0_1 Depth=1
+	jmp	.LBB0_7
+.LBB0_7:                                #   in Loop: Header=BB0_1 Depth=1
+	mov	eax, dword ptr [rbp - 36]
+	add	eax, 1
+	mov	dword ptr [rbp - 36], eax
+	jmp	.LBB0_1
+.LBB0_8:
+	mov	dword ptr [rbp - 44], 0
+.LBB0_9:                                # =>This Loop Header: Depth=1
+                                        #     Child Loop BB0_11 Depth 2
+                                        #       Child Loop BB0_13 Depth 3
+	mov	eax, dword ptr [rbp - 44]
+	mov	ecx, dword ptr [rbp - 8]
+	sub	ecx, 1
+	cmp	eax, ecx
+	jge	.LBB0_20
+# %bb.10:                               #   in Loop: Header=BB0_9 Depth=1
+	mov	eax, dword ptr [rbp - 44]
+	add	eax, 1
+	mov	dword ptr [rbp - 48], eax
+.LBB0_11:                               #   Parent Loop BB0_9 Depth=1
+                                        # =>  This Loop Header: Depth=2
+                                        #       Child Loop BB0_13 Depth 3
+	mov	eax, dword ptr [rbp - 48]
+	cmp	eax, dword ptr [rbp - 8]
+	jge	.LBB0_18
+# %bb.12:                               #   in Loop: Header=BB0_11 Depth=2
+	movsxd	rax, dword ptr [rbp - 48]
+	mov	rcx, qword ptr [rbp - 104] # 8-byte Reload
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 44]
+	movsd	xmm0, qword ptr [rdx + 8*rax] # xmm0 = mem[0],zero
+	movsxd	rax, dword ptr [rbp - 44]
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 44]
+	divsd	xmm0, qword ptr [rdx + 8*rax]
+	movsd	qword ptr [rbp - 56], xmm0
+	mov	dword ptr [rbp - 60], 0
+.LBB0_13:                               #   Parent Loop BB0_9 Depth=1
+                                        #     Parent Loop BB0_11 Depth=2
+                                        # =>    This Inner Loop Header: Depth=3
+	mov	eax, dword ptr [rbp - 60]
+	mov	ecx, dword ptr [rbp - 8]
+	add	ecx, 1
+	cmp	eax, ecx
+	jge	.LBB0_16
+# %bb.14:                               #   in Loop: Header=BB0_13 Depth=3
+	movsxd	rax, dword ptr [rbp - 48]
+	mov	rcx, qword ptr [rbp - 104] # 8-byte Reload
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 60]
+	movsd	xmm0, qword ptr [rdx + 8*rax] # xmm0 = mem[0],zero
+	movsd	xmm1, qword ptr [rbp - 56] # xmm1 = mem[0],zero
+	movsxd	rax, dword ptr [rbp - 44]
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 60]
+	mulsd	xmm1, qword ptr [rdx + 8*rax]
+	subsd	xmm0, xmm1
+	movsxd	rax, dword ptr [rbp - 48]
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 60]
+	movsd	qword ptr [rdx + 8*rax], xmm0
+# %bb.15:                               #   in Loop: Header=BB0_13 Depth=3
+	mov	eax, dword ptr [rbp - 60]
+	add	eax, 1
+	mov	dword ptr [rbp - 60], eax
+	jmp	.LBB0_13
+.LBB0_16:                               #   in Loop: Header=BB0_11 Depth=2
+	jmp	.LBB0_17
+.LBB0_17:                               #   in Loop: Header=BB0_11 Depth=2
+	mov	eax, dword ptr [rbp - 48]
+	add	eax, 1
+	mov	dword ptr [rbp - 48], eax
+	jmp	.LBB0_11
+.LBB0_18:                               #   in Loop: Header=BB0_9 Depth=1
+	jmp	.LBB0_19
+.LBB0_19:                               #   in Loop: Header=BB0_9 Depth=1
+	mov	eax, dword ptr [rbp - 44]
+	add	eax, 1
+	mov	dword ptr [rbp - 44], eax
+	jmp	.LBB0_9
+.LBB0_20:
+	mov	eax, dword ptr [rbp - 8]
+	mov	ecx, eax
+	lea	rdx, [8*rcx + 15]
+	and	rdx, -16
+	mov	rsi, rsp
+	sub	rsi, rdx
+	mov	rsp, rsi
+	mov	qword ptr [rbp - 72], rcx
+	mov	dword ptr [rbp - 76], 0
+	mov	qword ptr [rbp - 120], rsi # 8-byte Spill
+.LBB0_21:                               # =>This Inner Loop Header: Depth=1
+	mov	eax, dword ptr [rbp - 76]
+	cmp	eax, dword ptr [rbp - 8]
+	jge	.LBB0_24
+# %bb.22:                               #   in Loop: Header=BB0_21 Depth=1
+	movsxd	rax, dword ptr [rbp - 76]
+	xorps	xmm0, xmm0
+	mov	rcx, qword ptr [rbp - 120] # 8-byte Reload
+	movsd	qword ptr [rcx + 8*rax], xmm0
+# %bb.23:                               #   in Loop: Header=BB0_21 Depth=1
+	mov	eax, dword ptr [rbp - 76]
+	add	eax, 1
+	mov	dword ptr [rbp - 76], eax
+	jmp	.LBB0_21
+.LBB0_24:
+	mov	eax, dword ptr [rbp - 8]
+	sub	eax, 1
+	mov	dword ptr [rbp - 80], eax
+.LBB0_25:                               # =>This Loop Header: Depth=1
+                                        #     Child Loop BB0_27 Depth 2
+	cmp	dword ptr [rbp - 80], 0
+	jl	.LBB0_32
+# %bb.26:                               #   in Loop: Header=BB0_25 Depth=1
+	movsxd	rax, dword ptr [rbp - 80]
+	mov	rcx, qword ptr [rbp - 104] # 8-byte Reload
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 8]
+	movsd	xmm0, qword ptr [rdx + 8*rax] # xmm0 = mem[0],zero
+	movsd	qword ptr [rbp - 88], xmm0
+	mov	esi, dword ptr [rbp - 8]
+	sub	esi, 1
+	mov	dword ptr [rbp - 92], esi
+.LBB0_27:                               #   Parent Loop BB0_25 Depth=1
+                                        # =>  This Inner Loop Header: Depth=2
+	mov	eax, dword ptr [rbp - 92]
+	cmp	eax, dword ptr [rbp - 80]
+	jle	.LBB0_30
+# %bb.28:                               #   in Loop: Header=BB0_27 Depth=2
+	movsd	xmm0, qword ptr [rbp - 88] # xmm0 = mem[0],zero
+	movsxd	rax, dword ptr [rbp - 80]
+	mov	rcx, qword ptr [rbp - 104] # 8-byte Reload
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 92]
+	movsd	xmm1, qword ptr [rdx + 8*rax] # xmm1 = mem[0],zero
+	movsxd	rax, dword ptr [rbp - 92]
+	mov	rdx, qword ptr [rbp - 120] # 8-byte Reload
+	mulsd	xmm1, qword ptr [rdx + 8*rax]
+	subsd	xmm0, xmm1
+	movsd	qword ptr [rbp - 88], xmm0
+# %bb.29:                               #   in Loop: Header=BB0_27 Depth=2
+	mov	eax, dword ptr [rbp - 92]
+	add	eax, -1
+	mov	dword ptr [rbp - 92], eax
+	jmp	.LBB0_27
+.LBB0_30:                               #   in Loop: Header=BB0_25 Depth=1
+	movsd	xmm0, qword ptr [rbp - 88] # xmm0 = mem[0],zero
+	movsxd	rax, dword ptr [rbp - 80]
+	mov	rcx, qword ptr [rbp - 104] # 8-byte Reload
+	imul	rax, rcx
+	shl	rax, 3
+	mov	rdx, qword ptr [rbp - 112] # 8-byte Reload
+	add	rdx, rax
+	movsxd	rax, dword ptr [rbp - 80]
+	divsd	xmm0, qword ptr [rdx + 8*rax]
+	movsxd	rax, dword ptr [rbp - 80]
+	mov	rdx, qword ptr [rbp - 120] # 8-byte Reload
+	movsd	qword ptr [rdx + 8*rax], xmm0
+# %bb.31:                               #   in Loop: Header=BB0_25 Depth=1
+	mov	eax, dword ptr [rbp - 80]
+	add	eax, -1
+	mov	dword ptr [rbp - 80], eax
+	jmp	.LBB0_25
+.LBB0_32:
+	mov	dword ptr [rbp - 96], 0
+.LBB0_33:                               # =>This Inner Loop Header: Depth=1
+	mov	eax, dword ptr [rbp - 96]
+	cmp	eax, dword ptr [rbp - 8]
+	jge	.LBB0_36
+# %bb.34:                               #   in Loop: Header=BB0_33 Depth=1
+	movsxd	rax, dword ptr [rbp - 96]
+	mov	rcx, qword ptr [rbp - 120] # 8-byte Reload
+	movsd	xmm0, qword ptr [rcx + 8*rax] # xmm0 = mem[0],zero
+	movabs	rdi, offset .L.str.2
+	mov	al, 1
+	call	printf
+# %bb.35:                               #   in Loop: Header=BB0_33 Depth=1
+	mov	eax, dword ptr [rbp - 96]
+	add	eax, 1
+	mov	dword ptr [rbp - 96], eax
+	jmp	.LBB0_33
+.LBB0_36:
+	mov	dword ptr [rbp - 4], 0
+	mov	rax, qword ptr [rbp - 16]
+	mov	rsp, rax
+	mov	eax, dword ptr [rbp - 4]
+	mov	rsp, rbp
+	pop	rbp
+	.cfi_def_cfa rsp, 8
+	ret
+.Lfunc_end0:
+	.size	main, .Lfunc_end0-main
+	.cfi_endproc
+                                        # -- End function
+	.type	.L.str,@object          # @.str
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.L.str:
+	.asciz	"%i"
+	.size	.L.str, 3
+
+	.type	.L.str.1,@object        # @.str.1
+.L.str.1:
+	.asciz	"%lf"
+	.size	.L.str.1, 4
+
+	.type	.L.str.2,@object        # @.str.2
+.L.str.2:
+	.asciz	"%lf "
+	.size	.L.str.2, 5
+
+	.ident	"clang version 10.0.0-4ubuntu1 "
+	.section	".note.GNU-stack","",@progbits
+	.addrsig
+	.addrsig_sym __isoc99_scanf
+	.addrsig_sym printf

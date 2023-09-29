@@ -1,0 +1,110 @@
+ax^2 + bx + c
+func(a,b,c,x)
+//////////////
+a - регистр rdi
+b - rsi
+c - rdx
+x - rcx
+результат в rax
+///
+// чтобы умножить нужно сначала переместить в rax
+	.intel_syntax noprefix // чтобы был синтаксис intel
+	.text
+	.global func
+func:
+	mov rax, rdi
+	mul rcx // в rdx запишется 0, т.к. возможно переполнение
+	add rax, rsi
+	mul rcx
+	add rax, rdx
+	ret
+/////main
+#include <inttypes.h>
+#include <stdio.h>
+extern uint64_t func(uint64_t A, uint64_t B, uint64_t C, uint64_t X);
+
+int main() {
+	uint64_t A = 1;
+	uint64_t B = 2;
+	uint64_t C = 3;
+	uint64_t X = 4;
+	uint64_t R = func(A, B, C, X);
+	printf("% PRIu64 \n", R);
+}
+///
+если компилировать через clang то будет плохо(если нет первой строчки)
+сначала clang main
+потом clang ассемблера
+clang -o -g prog ass.S 
+и как-то должно работать
+чтобы дебагать:
+	gdbserver
+	gdb
+	file prog
+	target remote :1234 
+	break func
+	layout src
+	layout regs
+	continue
+///
+	push rbx // save to stack
+	pop rbx  // pop from stack
+///
+//main//
+int main() {
+	puts("Hello!")
+}
+/// assembler ///
+// это был вывод
+.intel_syntax noprefix
+.setion .text  // r-x
+.global main
+main:
+	// return 0
+	mov rax, 0  // но лучше xor rax, rax
+	mov rdi, offset Hello  // offset - метка относительная
+	push rax
+	call puts  // bl in arm
+	pop rax // при вызове функции регистры могут потеряться поэтому надо важные сохранить
+	ret
+.section rodata  // r--(только чтение)
+Hello:
+	.string "Hello"
+/// ввод
+//input x, y
+// print x + y
+main:
+	sub rsp, 8  // allocate 8 bytes // здесь не нужно
+	mov rdi, offset input_format
+	sub rsp, 4
+	mov rsi, rsp  // X
+	sub rsp, 4
+	mov rdx, rsp  // Y
+	call scanf
+	
+	mov rdx, rsp  // т.к. scanf ломает регистры
+	mov rsi, rsp
+	add rsi, 4
+	// scanf(input_format, &x, &y)
+	
+	// CISC (x86) vs RISC (arm)
+	
+	mov rax, [rsi]  // [BASE + SIZE * INDEX] where BASE, INDEX : reg, SIZE: const
+	add rax, [rdx]
+	mov rdi, offset print_format
+	mov rsi, rax
+	call printf
+	xor rax, rax
+	add rsp, 8
+	ret
+input_format:
+	.string "%d%d"
+print_format:
+	.string "%d\n"
+
+// чтобы при push и при дальнейшем вызове функции не было segmentation fault нужно чтобы стек был выровнен (был кратен 16)
+
+
+
+конец 
+

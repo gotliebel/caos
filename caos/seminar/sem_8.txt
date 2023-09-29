@@ -1,0 +1,76 @@
+// вещественно значные //
+clang -S // это вывод на ассемблере
+clang -S main.c -masm=intel  // синтаксис intel
+clang -S main.c -masm=intel  -0s // синтаксис intel и оптимальный код
+double sum(double a, double b) {
+	return a + b;
+}
+
+// чтото на ассемблере
+addsd xmm0, xmm1  // 128 bit // либо 2 double либо 4 float
+// scalar [s] -- packed [p]
+// double [d] -- single [s] (2 или 1  байта или не байта)
+// есть много опций -sse -sse2 -mavx -avx
+
+// первая задача //
+// main.c //
+#include <stdint.h>
+#include <stdio.h>
+
+double func(size_t N, const float* A, const float* B, float* R);
+int main() {
+	_Alignas(16) float A[] = {1,2,3,4,5,6,7,8};  // alignas(16) for c++ для выравнивания данных в памяти
+	float B[] = {8,7,6,5,4,3,2,1};
+	float R[8];
+	func(8, A, B, R);
+	for (size_t i = 0; i < 8; i++) {
+		printf("%f, ", R[i]);  // %f - число с фиксированной точкой %e - экспонециальная запись  %g - автоматически выбирает формат
+	}
+	puts("");
+}
+// ассемблер //
+.intel_syntax noprefix
+.text
+.global func
+// rdi - N, rsi - A, rdx - B, rcx - R
+func:
+	mov r8, rcx
+	mov rcx, rdi
+	.LoopBegin:
+	// index (r9) = rcx - 1
+	mov r9, rcx
+	sub r9, 1
+	movss xmm0,[rsi + r9*4]  // если запишем в rax, то только целочисленная есть регистры xmm0 - xmm7(32 bit) .. xmm15(64 bit)  // xmm - 128 bit, ymm - 256, xmm - 512
+	movss xmm1, [rdx + r9*4]
+	addss xmm0, xmm1
+	movss [r8 + r9*4], xmm0
+	loop .LoopBegin
+	ret
+// еще варинт
+func:
+	mov r8, rcx
+	mov r10, rdx
+	mov r9, 0
+	.LoopBegin:
+	movaps xmm0,[rsi]
+	movaps xmm1, [r10]
+	addaps xmm0, xmm1
+	movaps [r8], xmm0
+	
+	add rsi, 16
+	add r8, 16
+	add r10, 16
+	add r9, 4
+	cmp rdi, r9
+	jge .LoopBegin
+	ret
+// чтобы отообразить регистры xmm нужно info r xmm0
+чтобы еще ускорить нужно константы увеличть в два раза, a movaps -> vmovaps, addps -> vaddps(ymm0, ymm0, ymm1), xmm* -> ymm*
+// чтобы посчитать среднее арифметическое
+vxorps ymm2, ymm2, ymm2
+vhaddps ymm2, ymm2, ymm0
+// ответ должен быть в xmm0
+vmovps ymm0, ymm2
+// еще вот так можно
+vxorps ymm3, ymm3, ymm3
+vblendps ymm0, ymm2, ymm3, 0b11111110

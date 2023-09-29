@@ -1,0 +1,5 @@
+# ninja log v5
+0	24	1669140948969921660	CMakeFiles/atributes.dir/something.c.o	5f2c92b35b702a93
+1	32	1669318284296592650	atributes	52e9ab821c5104f5
+3	123	1669318261864144691	CMakeFiles/atributes.dir/second.c.o	86cda93e8c4227be
+2	123	1669318261864144691	CMakeFiles/atributes.dir/first.c.o	1fc401b28bfc1351

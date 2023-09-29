@@ -1,0 +1,1 @@
+/usr/bin/clang-14 -g CMakeFiles/python.dir/main.c.o -o python 

@@ -1,0 +1,1 @@
+/usr/bin/clang-14 -g "CMakeFiles/sockets.dir/tcp-client.c.o" -o sockets 

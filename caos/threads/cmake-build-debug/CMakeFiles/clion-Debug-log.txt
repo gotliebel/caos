@@ -1,0 +1,10 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-14 -G "CodeBlocks - Unix Makefiles" -S /tmp/threads -B /tmp/threads/cmake-build-debug
+-- Configuring incomplete, errors occurred!
+See also "/tmp/threads/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/tmp/threads/cmake-build-debug/CMakeFiles/CMakeError.log".
+CMake Error at CMakeLists.txt:8:
+  Parse error.  Expected "(", got newline with text "
+
+  ".
+
+

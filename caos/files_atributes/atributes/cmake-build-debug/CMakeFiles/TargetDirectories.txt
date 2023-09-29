@@ -1,0 +1,3 @@
+/home/gleb/caos/files_atributes/atributes/cmake-build-debug/CMakeFiles/atributes.dir
+/home/gleb/caos/files_atributes/atributes/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/gleb/caos/files_atributes/atributes/cmake-build-debug/CMakeFiles/rebuild_cache.dir

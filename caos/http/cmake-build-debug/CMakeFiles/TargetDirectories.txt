@@ -1,0 +1,3 @@
+/tmp/http/cmake-build-debug/CMakeFiles/http.dir
+/tmp/http/cmake-build-debug/CMakeFiles/edit_cache.dir
+/tmp/http/cmake-build-debug/CMakeFiles/rebuild_cache.dir

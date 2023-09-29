@@ -1,0 +1,1 @@
+/usr/bin/clang-14 -g CMakeFiles/openssl.dir/main.c.o -o openssl 

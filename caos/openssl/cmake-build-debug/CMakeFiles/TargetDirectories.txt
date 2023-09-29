@@ -1,0 +1,3 @@
+/tmp/openssl/cmake-build-debug/CMakeFiles/openssl.dir
+/tmp/openssl/cmake-build-debug/CMakeFiles/edit_cache.dir
+/tmp/openssl/cmake-build-debug/CMakeFiles/rebuild_cache.dir

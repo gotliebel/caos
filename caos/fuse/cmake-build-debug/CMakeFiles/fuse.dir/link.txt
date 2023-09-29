@@ -1,0 +1,1 @@
+/usr/bin/clang-14 -g CMakeFiles/fuse.dir/main.c.o -o fuse 

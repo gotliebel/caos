@@ -1,0 +1,3 @@
+/tmp/fuse/cmake-build-debug/CMakeFiles/fuse.dir
+/tmp/fuse/cmake-build-debug/CMakeFiles/edit_cache.dir
+/tmp/fuse/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,6 @@
+# ninja log v5
+1	52	1668692670422727098	CMakeFiles/low_level.dir/try.c.o	522de64856ae4a8c
+33	52	1668715380818111679	low_level	aff6704760e3cf49
+0	41	1668704043189076679	CMakeFiles/low_level.dir/second_right.c.o	d105e7e02fc8786a
+0	33	1668715380798111750	CMakeFiles/low_level.dir/third.c.o	f72fe001041e6efd
+0	52	1668692670422727098	CMakeFiles/low_level.dir/first.c.o	c01cc0e376e1afe8

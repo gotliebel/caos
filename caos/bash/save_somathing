@@ -1,0 +1,4 @@
+#if find $directory/man3/ -name $A.3 -exec false {} +
+        #if [ -f `man -W $A` ]
+        #if [ ! -f $directory/man3/$A.3 ]
+ | sed 's/ #include//g'

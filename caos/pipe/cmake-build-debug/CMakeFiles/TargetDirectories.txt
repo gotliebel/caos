@@ -1,0 +1,3 @@
+/tmp/pipe/cmake-build-debug/CMakeFiles/pipe.dir
+/tmp/pipe/cmake-build-debug/CMakeFiles/edit_cache.dir
+/tmp/pipe/cmake-build-debug/CMakeFiles/rebuild_cache.dir

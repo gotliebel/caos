@@ -1,0 +1,3 @@
+/home/gleb/caos/system_calls/contest/cmake-build-debug/CMakeFiles/contest.dir
+/home/gleb/caos/system_calls/contest/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/gleb/caos/system_calls/contest/cmake-build-debug/CMakeFiles/rebuild_cache.dir

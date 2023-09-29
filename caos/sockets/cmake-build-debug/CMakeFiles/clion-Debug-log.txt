@@ -1,0 +1,4 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-14 -G "CodeBlocks - Unix Makefiles" -S /tmp/sockets -B /tmp/sockets/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/sockets/cmake-build-debug

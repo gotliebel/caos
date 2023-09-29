@@ -1,0 +1,5 @@
+//printf("%d", length);
+  //PyObject_Print(PyList_GetItem(table, 0), stdout, 0);
+
+
+    count_spl = PyLong_AsLong(PyUnicode_Count(PyList_GetItem(table, 0), PyUnicode_FromString(";")))

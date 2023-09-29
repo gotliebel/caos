@@ -1,0 +1,3 @@
+/home/gleb/caos/files_in_memory/files/cmake-build-debug/CMakeFiles/files.dir
+/home/gleb/caos/files_in_memory/files/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/gleb/caos/files_in_memory/files/cmake-build-debug/CMakeFiles/rebuild_cache.dir

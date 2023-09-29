@@ -1,0 +1,17 @@
+sizeof()
+<inttypes.h>
+"value = % PRId64 \n"
+typedef struct something {
+} something
+размер структуры должен быть кратен 8
+typedef struct someyhing {
+} __atribute((packed))) something (компилятор не добавляет новой незанятой памяти)
+int main {
+union {
+int;
+int;
+} something - создание струткруы
+float - 32(1,8,23)(sign, exp, mantissa) double - 64(1,11,52)
+int sign = something_float >> 31
+int exp = (something_float << 1) >> 24
+int mantissa = (something_float << 9) >> 9

@@ -1,0 +1,3 @@
+/tmp/python/cmake-build-debug/CMakeFiles/python.dir
+/tmp/python/cmake-build-debug/CMakeFiles/edit_cache.dir
+/tmp/python/cmake-build-debug/CMakeFiles/rebuild_cache.dir

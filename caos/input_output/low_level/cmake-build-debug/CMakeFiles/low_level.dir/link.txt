@@ -1,0 +1,1 @@
+/usr/bin/clang-14 -g CMakeFiles/low_level.dir/third_right.c.o CMakeFiles/low_level.dir/sadyk.c.o -o low_level 

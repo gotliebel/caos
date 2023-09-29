@@ -1,0 +1,85 @@
+#include <inttypes.h>
+#include <stdio.h>
+// R := A + B
+extern void calculate();
+
+uint64_t A = 3;
+uint64_t B = 5;
+uint64_t R = 0;
+
+int main() {
+    calculate();
+    printf("%" PRIu64 "\n", R);
+}
+
+///////////////////////////////////////////////////////////////
+
+.section .text // r-x
+global calculate
+calculate:
+    // x0:=A, x1:=B
+    adr x0, .Lexterns // взять адрес метки
+    ldr x0, [x0] // x0 = &A
+    ldr x0, [x0]
+    adr x1, .Lextern
+    ldr x1, [x1, 8]  
+    ldr x1, [x1]
+    add x0, x0, x1
+    
+    adr x2, .Lexterns
+    ldr x2, [x2 + 16]
+    ldr x2, [x2]
+    str x0, [x2] //segfault
+    ret
+
+.Lexterns: // .L не попадает в таблицу
+.quad A // .quad - 4 bytes // ptr_A
+.quad B // .quad 1123
+.quad R
+
+.section .data
+
+////////////////////
+
+
+extern uint64_t R;
+
+
+    adr x2, R
+    str x0, [x2]
+    
+    .Lexterns:
+    .quad A
+    .quad B
+    
+    .section .data  //rw-
+R:
+    .space 8
+    
+    
+//////////////////////////////////////////////
+
+.section .text
+.global main
+// main() { puts("Hello"); }
+
+main:
+    // sp указатель на вершину стека
+    // push to stack
+    sub sp, sp, #8
+    str x30, [sp]
+    // x0 ... x7 - args
+    adr x0, .Lhello
+    // bl x30=lr вернутся после ret x30:= pc+4, pc = puts
+    bl puts
+    ldr x30, [sp]
+    add sp, sp, #8
+       
+    ret
+    //.section .rodata
+    .Lhello:
+    .string "Hello"
+    
+    
+
+

@@ -1,0 +1,9 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-14 -G "CodeBlocks - Unix Makefiles" -S /tmp/python -B /tmp/python/cmake-build-debug
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.6") 
+-- Configuring incomplete, errors occurred!
+See also "/tmp/python/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+CMake Error at CMakeLists.txt:7 (target_link_libraries):
+  Cannot specify link libraries for target "program" which is not built by
+  this project.
+
+

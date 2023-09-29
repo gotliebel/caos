@@ -1,0 +1,3 @@
+gcc -Wall test.c `pkg-config fuse --cflags --libs` -o simplefs
+fusermount3 -u work/
+
